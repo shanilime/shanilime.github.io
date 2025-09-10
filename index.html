@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shani Lime | Портфолио</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #222;
+      --accent: #2575fc;
+      --card-bg: #fff;
+    }
+
+    body.dark {
+      --bg: #1e1e1e;
+      --text: #f0f0f0;
+      --accent: #57a6ff;
+      --card-bg: #2c2c2c;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    header {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: white;
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+
+    header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    header p { font-size: 1.2rem; opacity: 0.9; }
+
+    nav {
+      background: #111;
+      padding: 0.5rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: #57a6ff; }
+
+    section {
+      padding: 3rem 1rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+      color: var(--text);
+      border-bottom: 3px solid var(--accent);
+      display: inline-block;
+      padding-bottom: 0.3rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s, background 0.3s;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .project-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .project-card:hover { transform: translateY(-5px) scale(1.02); }
+
+    .project-card h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+      color: var(--accent);
+    }
+
+    .contact a {
+      display: inline-block;
+      margin-right: 1rem;
+      font-weight: bold;
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.3s;
+    }
+    .contact a:hover { opacity: 0.7; }
+
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+
+    /* Тема-переключатель */
+    .theme-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      transition: background 0.3s;
+    }
+    .theme-toggle:hover { background: #6a11cb; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Shani Lime</h1>
+    <p>Frontend-разработчик • Open Source • Креатив</p>
+  </header>
+
+  <nav>
+    <a href="#about">Обо мне</a>
+    <a href="#projects">Проекты</a>
+    <a href="#contact">Контакты</a>
+  </nav>
+
+  <main>
+    <section id="about" class="about">
+      <h2>Обо мне</h2>
+      <p>Привет! Я Shani Lime — разработчик, увлечённый созданием красивых и удобных интерфейсов.
+      Люблю открытый код, современные технологии и минимализм в дизайне.</p>
+    </section>
+
+    <section id="projects" class="projects">
+      <h2>Проекты</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3>🌐 Личный сайт</h3>
+          <p>Этот сайт-портфолио на GitHub Pages.</p>
+        </div>
+        <div class="project-card">
+          <h3>📦 Open Source</h3>
+          <p>Мои проекты и вклад в сообщество можно найти на GitHub.</p>
+        </div>
+        <div class="project-card">
+          <h3>⚡ Мини-игра</h3>
+          <p>Эксперимент с HTML5 Canvas и чистым JS.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Контакты</h2>
+      <p>Свяжитесь со мной в соцсетях:</p>
+      <a href="https://github.com/shanilime" target="_blank">GitHub</a>
+      <a href="mailto:yourmail@example.com">Email</a>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Shani Lime. Все права защищены.
+  </footer>
+
+  <button class="theme-toggle" id="theme-toggle">🌙 Тема</button>
+
+  <script>
+    // Плавная прокрутка
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(link.getAttribute('href'))
+          .scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Переключатель темы
+    const toggleBtn = document.getElementById('theme-toggle');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      toggleBtn.textContent = document.body.classList.contains('dark') ? "☀️ Тема" : "🌙 Тема";
+    });
+
+    // Анимация появления карточек
+    const cards = document.querySelectorAll('.project-card');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    cards.forEach(card => observer.observe(card));
+  </script>
+</body>
+</html>
